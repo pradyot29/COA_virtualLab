@@ -1,0 +1,63 @@
+<head>
+  <title>Hysterisis Loss Curve</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h1>Hysterisis Loss Curve</h1>
+<canvas id="myChart"></canvas>
+</body>
+<script>
+  function getBHCurveData() {
+    const magneticFieldStrengths = [-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500];
+    const magneticFluxDensities = [-1.2, -0.95, -0.7, -0.45, -0.2, 0, 0.2, 0.45, 0.7, 0.95, 1.2];
+    return {
+      magneticFieldStrengths,
+      magneticFluxDensities,
+    };
+  }
+
+
+  const data = getBHCurveData();
+  const config = {
+    type: 'line',
+    data: {
+      labels: data.magneticFieldStrengths,
+      datasets: [
+        {
+          label: 'B-H Curve',
+          data: data.magneticFluxDensities,
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'B-H Curve for Iron',
+      },
+      scales: {
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: 'Magnetic Field Strength (A/m)',
+            },
+          },
+        ],
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: 'Magnetic Flux Density (T)',
+            },
+          },
+        ],
+      },
+    },
+  };
+  const myChart = new Chart(document.getElementById('myChart'), config);
+
+
+</script>

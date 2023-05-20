@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .waveform-container {
+            width: 600px;
+            height: 200px;
+            background-color: #eee;
+            border: 1px solid #aaa;
+            padding: 10px;
+        }
+
+        #waveform {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #3E8E41;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="waveform-container">
+        <canvas id="waveform"></canvas>
+    </div>
+    <form id="input-form">
+        <div class="form-group">
+            <label for="clk-period">Clock Period (in seconds):</label>
+            <input type="number" id="clk-period" step="0.001" required>
+        </div>
+        <div class="form-group">
+            <label for="duty-cycle">Duty Cycle (in percentage):</label>
+            <input type="number" id="duty-cycle" step="0.1" min="0" max="100" required>
+        </div>
+        <div class="form-group">
+            <label for="setup-time">Setup Time (in seconds):</label>
+            <input type="number" id="setup-time" step="0.001" required>
+        </div>
+        <div class="form-group">
+            <label for="hold-time">Hold Time (in seconds):</label>
+            <input type="number" id="hold-time" step="0.001" required>
+        </div>
+        <button type="submit">Generate Waveform</button>
+    </form>
+    <script>
+        const form = document.getElementById("input-form");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            // Get user inputs
+            const clkPeriod = parseFloat(document.getElementById("clk-period").value);
+            const dutyCycle = parseFloat(document.getElementById("duty-cycle").value);
+            const setupTime = parseFloat(document.getElementById("setup-time").value);
+            const holdTime = parseFloat(document.getElementById("hold-time").value);
+
+            // Calculate waveform properties
+            const highTime = clkPeriod * (dutyCycle / 100);
+            const lowTime = clkPeriod - highTime;
+
+            // Generate clock signal data
+            const clkData = [];
+            let time = 0;
+            while (time < clkPeriod) {
+                clkData.push({ time: time, value: 0 });
+                clkData.push({ time: time + highTime, value: 1 });
+                time += clkPeriod;
+            }
+
+            // Generate master waveform data
+            const masterData = [];
+            time = setupTime + highTime;
+            while (time < clkPeriod) {
+                masterData.push({ time: time, value: 0 });
+                masterData.push({ time: time + lowTime, value: 1 });
+                time += clkPeriod;
+            }
+
+            // Generate slave waveform data
+            const slaveData = [];
+            time = holdTime + highTime;
+            while (time < clkPeriod) {
+                slaveData.push({ time: time, value: 0 });
+                slaveData.push({ time: time + lowTime, value: 1 });
+                time += clkPeriod;
+            }
+
+            // Draw waveforms
+            const canvas = document.getElementById("waveform");
+            const ctx = canvas.getContext("2d");
+            const width = canvas.width;
+            const height = canvas.height;
+            const yMid = height / 2;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw clock line
+            ctx.beginPath();
+            ctx.moveTo(0, yMid);
+            ctx.lineTo(width, yMid);
+            ctx.stroke();
+
+            // Draw clock waveform
+            ctx.beginPath();
+            ctx.moveTo(0, yMid);
+            clkData.forEach((data) => {
+                const x = (data.time / clkPeriod) * width;
+                const y = data.value === 0 ? yMid : 0;
+                ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Draw master waveform
+            ctx.beginPath();
+            ctx.moveTo(0, yMid);
+            masterData.forEach((data) => {
+                const x = (data.time / clkPeriod) * width;
+                const y = data.value === 0 ? yMid : 0;
+                ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Draw slave waveform
+            ctx.beginPath();
+            ctx.moveTo(0, yMid);
+            slaveData.forEach((data) => {
+                const x = (data.time / clkPeriod) * width;
+                const y = data.value === 0 ? yMid : height;
+                ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Draw setup and hold time
+            const setupTimeX = (setupTime / clkPeriod) * width;
+            const holdTimeX = ((clkPeriod - holdTime) / clkPeriod) * width;
+            ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
+            ctx.fillRect(0, 0, setupTimeX, height);
+            ctx.fillRect(holdTimeX, 0, width - holdTimeX, height);
+            ctx.fillStyle = "black";
+            ctx.font = "bold 12px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("Clock", width / 2, yMid - 10);
+            ctx.fillText("Master", width / 2, yMid - 30);
+            ctx.fillText("Slave", width / 2, yMid + 20);
+            ctx.font = "12px Arial";
+            ctx.fillText('Duty Cycle: ${ dutyCycle } %', width - 80, yMid - 30);
+            ctx.fillText('Setup Time: ${ setupTime.toFixed(2) }', setupTimeX / 2, yMid + 20);
+            ctx.fillText('Hold Time: ${ holdTime.toFixed(2) }', width - (width - holdTimeX) / 2, yMid + 20);
+        });
+    </script>
+</body>
+
+</html>

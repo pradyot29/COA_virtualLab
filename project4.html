@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+
+.container{
+    background: linear-gradient(#fa4471, #4876d2);
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 7fr;
+    /* justify-content: center;     */
+    align-items: center;
+    /* padding: 40px; */
+} 
+.title {
+    display: flex;
+    justify-content: center;
+}  
+.headd{
+    padding-top: 45px;
+     font-size: 50px;
+}
+.box {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 3fr 3fr 1fr;
+    grid-template-columns: 4fr 3fr 4fr;
+    height: 80%;
+    width: 80%;
+    align-items: center;
+    /* background-color: beige; */
+    justify-self:center;
+    border-radius: 35px;
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border: 2px solid rgba( 255, 255, 255, 0.18 );
+}
+.light{
+    grid-column: 2/3;
+}
+.btn {
+    /* padding-top: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    background: #11cdd4;
+    background-image: -webkit-linear-gradient(top, #11cdd4, #278589);
+    background-image: -moz-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -ms-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -o-linear-gradient(top, #11cdd4, #11999e);
+    background-image: linear-gradient(to bottom, #11cdd4, #11999e);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 10px;
+    font-family: 'Monteserrat', sans-serif;
+    color: black;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    width: 200px;
+    height: 60px;
+    padding-top: 6px;
+    z-index: 1;
+}
+
+.submit:hover {
+    background: #30e3cb;
+    background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -ms-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
+    text-decoration: none;
+    z-index: 1;
+}
+.submit2 {
+    background: #11cdd4;
+    background-image: -webkit-linear-gradient(top, #ce0f6e,  #7193d7);
+    background-image: -moz-linear-gradient(top, #b80b61, #76e0d2);
+    background-image: -ms-linear-gradient(top, #d44e91, #010714);
+    background-image: -o-linear-gradient(top, #d44e91, #30e3cb,);
+    background-image: linear-gradient(to bottom, #d44e91,#668dda);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 10px;
+    font-family: 'Monteserrat', sans-serif;
+    color: black;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    width: 200px;
+    height: 60px;
+    padding-top: 6px;
+    z-index: 1;
+}
+
+.submit2:hover {
+    background: #010714;
+    background-image: -webkit-linear-gradient(top, #d00e6f,  #4876d2);
+    background-image: -moz-linear-gradient(top, #d00e6f, #30e3cb);
+    background-image: -ms-linear-gradient(top, #d00e6f, #010714);
+    background-image: -o-linear-gradient(top, #d00e6f, #30e3cb,);
+    background-image: linear-gradient(to bottom, #d00e6f,#4876d2);
+    text-decoration: none;
+    z-index: 1;
+}
+button{
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 18px;
+    padding-bottom: 1px; 
+    position: relative;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.answer{
+    position: relative;
+    /* border: 1px solid black; */
+    border: 2px groove black;
+    border-radius: 30px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    font-size: 70px;
+    font-weight: 600;
+}
+.current {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 1.5fr;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.next {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 1.5fr;
+    height: 100%;
+    width: 100%;   
+    justify-content: center;
+}
+.cont{
+    display: grid;
+    grid-auto-flow: row;
+    justify-self: center;
+    align-items: center;
+}
+.text{
+    font-size: 27px;
+    font-weight: 600;
+    color: rgb(31, 6, 154);
+}
+.image{
+    position: relative;
+    height: 100px;
+    
+}
+.imgg {
+    margin-top: 25px;
+    text-align: center;
+}
+.gif{
+    align-items: start;
+    height: 100%;
+    width: 100%;
+}
+.cs {
+    color:rgb(115, 3, 3);
+    font-size: 30px;
+    font-weight: 600;
+    /* padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #4876d2; */
+}
+.ns{
+    color:rgb(115, 3, 3);
+    font-size: 30px;
+    font-weight: 600;
+}
+.aa{
+    color:rgb(29, 96, 29);
+    font-size: 25px;
+    font-weight: 700;
+}
+.b{
+    font-size: 20px;
+    font-weight: 700;
+    /* border: 1px solid black;
+    padding: 5px; */
+}
+.c{
+    color:rgb(204, 8, 8);
+    font-size: 25px;
+    font-weight: 700;
+}
+.d{
+    font-size: 20px;
+    font-weight: 700;
+}
+.aab{
+    border: 2px groove black;
+    padding: 5px;
+    margin-right: 5px;
+}
+.cd{
+    border: 2px groove black;
+    padding: 5px;
+    margin-left: 5px;
+}
+.state{
+    position: relative;
+    top:30px;
+}
+.fig{
+    text-align: center;
+}
+.gohome
+{
+    /* color: black; */
+    font-size: 30px;
+    font-weight: 900;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1 class="headd">COUNTER</h1>
+        </div>
+        <div class="box">
+            <div class="btn press cont">
+                <button class="submit" onclick="increment()">INCREMENT</button>
+            </div>
+            <div class="show cont">
+                <div class="answer"><span id="answerr"></span></div>
+            </div>
+            <div class="btn decrement cont">
+                <button class="submit" onclick="decrement()">DECREMENT</button>
+            </div>
+            <div class="current cont">
+                <div class="state">
+                    <div class="text">CURRENT STATE</div>
+                </div>
+                <div class="fig"><span class="cs" id="currentState"></span></div>
+            </div>
+            <div class="gif cont">
+                <div class="btn reset cont">
+                    <button class="submit2" onclick="reset()">RESET</button>
+                </div>
+                <div class="imgg">
+                    <img class="image"src="giphy.gif" alt="arrow">
+                </div>
+               
+            </div>
+            <div class="next cont">
+                <div class="state">
+                    <div class="text">NEXT STATE</div>
+                </div>  
+                <div class="fig"><span class="ns" id="nextState"></span></div>
+            </div>
+            <div class="light cont">
+                <p><span class="aab"><span class="aa">On </span><span class="b">1</span></span><span class="cd"><span class="c">Off </span><span class="d">0</span></span></p>
+            </div>
+        </div>
+
+        <div class="gohome"><a href="index.html"  >Go to Home</a></div>
+    </div>
+    <script>
+		var currentState = "0 0 0 0";
+        var currentindex = 0;
+		var grayCode = ["0 0 0 0", "0 0 0 1", "0 0 1 1", "0 0 1 0", "0 1 1 0", "0 1 1 1", "0 1 0 1", "0 1 0 0", "1 0 0 1", "1 0 0 0"];
+		var finalvalue = ["0", "1", "3", "2", "6", "7", "5", "4", "9", "8"];
+		function increment() {
+			var index = grayCode.indexOf(currentState);
+			var nextIndex = (index + 1) % 10;
+			var nextState = grayCode[nextIndex];
+            var finalanswer = finalvalue[currentindex];
+			document.getElementById("currentState").innerHTML = currentState;
+			document.getElementById("nextState").innerHTML = nextState;
+			document.getElementById("answerr").innerHTML = finalanswer;
+			currentState = nextState;
+            currentindex = (currentindex + 1) % 10;
+		}
+		
+		function decrement() {
+			var index = grayCode.indexOf(currentState);
+			var nextIndex = (index - 1 + 10) % 10;
+			var nextState = grayCode[nextIndex];
+            var finalanswer = finalvalue[currentindex];
+			document.getElementById("currentState").innerHTML = currentState;
+			document.getElementById("nextState").innerHTML = nextState;
+            document.getElementById("answerr").innerHTML = finalanswer;
+			currentState = nextState;
+            currentindex = (10+(currentindex-1)) % 10;
+
+		}
+        function reset() {
+            document.getElementById("currentState").innerHTML = "0 0 0 0";
+			document.getElementById("nextState").innerHTML = "0 0 0 1 ";
+            document.getElementById("answerr").innerHTML = "0";
+		}
+	</script>
+</body>
+</html>
+

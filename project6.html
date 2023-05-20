@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Master-Slave Flip-Flop Waveform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4caf50;
+            color: #fff;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        canvas {
+            margin-top: 50px;
+            border: 1px solid #000;
+        }
+
+        #waveformContainer {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #waveformCanvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+    </style>
+    	<title>Virtual Lab Homepage</title>
+        <link rel="stylesheet"  href="stylesVL.css">
+</head>
+
+<body>
+    <header>Virtual Lab</header>
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="OurProjects.html">Our Projects</a>
+		<a href="OurTeam.html">Our Team</a>
+        <a href="help.html">Help</a>
+
+	</nav>
+
+    <h1>Master-Slave Flip-Flop Waveform</h1>
+    <label for="dataInput">Data Input:</label>
+    <input type="text" id="dataInput" />
+    <button onclick="startSimulation()">Start Simulation</button>
+    <!-- <canvas id="waveformCanvas" width="600" height="200"></canvas>--->
+      <div id="waveformContainer">
+        <canvas id="waveformCanvas" width="600" height="200"></canvas>
+    </div>
+    <script>
+        // Get the canvas element
+        const canvas = document.getElementById("waveformCanvas");
+        const context = canvas.getContext("2d");
+
+        // Set the clock period and flip-flop setup and hold times in milliseconds
+        const period = 1000;
+        const setupTime = 200;
+        const holdTime = 200;
+
+        // Initialize the flip-flop state
+        let flipFlopState = 0;
+
+        // Define the callback function to simulate the flip-flop behavior
+        function simulateFlipFlop(dataIn) {
+            // Wait for the setup time before changing the flip-flop state
+            setTimeout(() => {
+                // Only change the flip-flop state if the data input is stable during the hold time
+                if (dataIn === flipFlopState) {
+                    flipFlopState = dataIn;
+                }
+            }, setupTime);
+        }
+
+        // Define the function to start the simulation
+        function startSimulation() {
+            // Get the data input from the user
+            const dataInput = document.getElementById("dataInput").value;
+
+            // Clear the canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Start the clock by scheduling the callback function to be executed every period
+            const intervalId = setInterval(() => {
+                // Generate a random data input (0 or 1) if the user input is not valid
+                let dataIn = flipFlopState;
+                if (dataInput === "0" || dataInput === "1") {
+                    dataIn = parseInt(dataInput);
+                } else {
+                    dataIn = Math.round(Math.random());
+                }
+
+                // Simulate the flip-flop behavior using the current flip-flop state and data input
+                simulateFlipFlop(flipFlopState ^ dataIn);
+
+                // Draw the clock signal and flip-flop state on the canvas
+                const currentTime = Date.now() % period;
+                const clockEdge = currentTime < period / 2 ? 0 : 1;
+
+                // Draw the clock edge
+                context.beginPath();
+                context.moveTo(currentTime, 0);
+                context.lineTo(currentTime, canvas.height);
+                context.strokeStyle = "#f00";
+                context.stroke();
+
+                // Draw the flip-flop state
+                context.beginPath();
+                context.moveTo(currentTime, canvas.height / 2);
+                context.lineTo(currentTime + period / 2, canvas.height / 2);
+                context.strokeStyle = flipFlopState ? "#00f" : "#000";
+                context.stroke();
+            }, period);
+        }
+    </script>

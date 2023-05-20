@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Air Conditioning Unit</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            height: 200px;
+            visibility: hidden;
+        }
+
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-image: url('fog.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"],
+        select,
+        input[type="time"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        .validation {
+            color: red;
+            margin-left: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <h1>Air Conditioning Unit</h1>
+        <div class="input-group">
+            <label for="temperature">Temperature (Fahrenheit):</label>
+            <input type="number" id="temperature" min="50" max="100" value="72">
+        </div>
+        <div class="input-group">
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" min="0" max="100" value="50">
+        </div>
+        <div class="input-group">
+            <label for="day">Day of the Week:</label>
+            <select id="day">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="time">Time of Day:</label>
+            <input type="time" id="time" value="12:00">
+            <span id="time-validation" class="validation"></span>
+        </div>
+        <button id="submit-btn" onclick="checkConditions()">Submit</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        // Select the relevant HTML elements
+        const temperatureInput = document.getElementById('temperature');
+        const humidityInput = document.getElementById('humidity');
+        const daySelect = document.getElementById('day');
+        const timeInput = document.getElementById('time');
+        const resultDiv = document.getElementById('result');
+
+        // Define a function to check the conditions and update the result
+        function checkConditions() {
+            // Get the input values
+            const temperature = parseFloat(temperatureInput.value);
+            const humidity = parseFloat(humidityInput.value);
+            const day = daySelect.value;
+            const time = timeInput.value;
+
+            // Perform some logic based on the input values
+            let message = '';
+            if (temperature < 70 || temperature > 80) {
+                message += 'Temperature is outside the recommended range of 70-80°F. ';
+            }
+            if (humidity < 40 || humidity > 60) {
+                message += 'Humidity is outside the recommended range of 40-60%. ';
+            }
+            if (day === 'Saturday' || day === 'Sunday') {
+                message += 'Weekend pricing applies. ';
+            }
+            if (time < '09:00' || time > '17:00') {
+                message += 'After-hours pricing applies. ';
+            }
+
+            // Update the result with the message
+            resultDiv.innerText = message || 'Conditions are optimal.';
+
+            // Return false to prevent the form from submitting
+            return false;
+        }
+
+        // Attach the checkConditions function to the submit button
+        const submitButton = document.getElementById('submit-btn');
+        submitButton.addEventListener('click', checkConditions);
+
+    </script>
+</body>
+
+</html>

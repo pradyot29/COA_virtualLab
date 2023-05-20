@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Help Page</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      margin: 20px 0;
+      text-align: center;
+      font-size: 36px;
+      color: #333;
+    }
+    section {
+      border-top: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #333;
+    }
+    p {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.5;
+    }
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.2s ease-in-out;
+    }
+    a:hover {
+      background-color: #444;
+    }
+    .convert-btn {
+      padding: 12px 24px;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: #fff;
+    }
+    .convert-btn:hover {
+      background-color: #0062cc;
+    }
+  </style>
+    	<title>Virtual Lab Homepage</title>
+        <link rel="stylesheet"  href="stylesVL.css">
+</head>
+
+<body>
+    <header>Virtual Lab</header>
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="OurProjects.html">Our Projects</a>
+		<a href="OurTeam.html">Our Team</a>
+        <a href="help.html">Help</a>
+
+	</nav>
+<h1>Help Page</h1>
+<p>For a pdf guide book click below.</p>
+<a href="The_Help_Book_Final.pdf">PDF</a>
+<br>
+<br>
+<section>
+  <h2>Induced Current Calculator</h2>
+  <p>
+    This project allows you to calculate the magnitude and direction of the induced current in a conductor based on its velocity and the strength of an applied magnetic field.<br>
+
+    Input from User :- Turns in Solenoid , Length of Solenoid , Area of Solenoid(m^2) ,Resistivity of Solenoid(ohm-m),Pole Strength of Magnet(A-m), Length of Magnet(m), Velocity of Magnet(m/s),Distance of Magnet from Solenoid(m)<br>
+
+    Output for User :- Magnetic Field (Tesla) , Induced EMF (V) , Induced current (A)
+  </p>
+  <p>
+    <a href="faraday.html">View Induced Current Calculator</a>
+    <!-- <button class="convert-btn">Convert</button> -->
+  </p>
+</section>
+
+<section>
+  <h2>Numeric Conversion</h2>
+  <p>
+    This project provides tools for converting between different number systems, including binary, octal, decimal, and hexadecimal.<br>
+    Input for User:- Takes number as Binary , Decimal  , Octal  , Hexadecimal <br>
+    Output for User:- Converts Decimal to every other and back , Binary to Octal and vice versa<br>
+  </p>
+  <p>
+    <a href="project3.html">View Numeric Conversion</a>
+    <!-- <button class="convert-btn">Convert</button> -->
+  </p>
+</section>
+
+<section>
+  <h2>Hysteresis Loss</h2>
+  <p>
+    This project allows you to calculate the hysteresis loss in a magnetic material based on its permeability, coercive force, and the frequency and amplitude of an applied magnetic field.<br>
+
+    Input for User:- Takes material as input Hard Steel Wrought Iron , Silicon Steel  <br>
+    Output for User:- Returns Imaga b-h curve of every Hysterisis plot<br>
+  </p>
+  <p>
+    <a href="hyst.html">View Hysteresis Loss</a>
+    <!-- <button class="convert-btn">Convert</button> -->
+  </p>
+</section>
+
+<section>
+  <h2>Gray Code Counter</h2>
+  <p>
+    This project provides a simple counter for generating Gray codes, which are commonly used in digital electronics.
+    <br>
+    Input for User:- Containns Increment Decrement Reset Buttons  <br>
+    Output for User:-Increases and Decreases  plot<br>
+  </p>
+
+  <p>
+    <a href="project4.html">View Gray Code Counter</a>
+    <!-- <button class="convert-btn">Convert</button> -->
+  </p>
+</section>
+
+<section>
+  <h2>Master-Slave Clock Signal</h2>
+  <p>This project provides an explanation and demonstration of the master-slave clock signal, which is used in synchronous digital systems to ensure that all components operate on the same clock cycle.
+  <br>
+  Input for User:- Takes clock signal as input   <br>
+  Output for User:- Returns mentioned graph as output <br>
+  </p>
+  <p>
+    <a href="project6.html">View Master-Slave Clock Signal</a>
+    <!-- <button class="convert-btn">Convert</button> -->
+  </p>
+</section>
+
+<section>
+  <h2>Analog-Digital Converter</h2>
+  <p>
+    This project explains how analog signals can be converted to digital signals using an analog-to-digital converter (ADC), and provides a simulation tool for experimenting with different ADC configurations.
+<br>
+    Input for User:- Takes Analog Signal , Digital SignalSteel  <br>
+    Output for User:- Converts Signal Analog to Digital and Digital to Analog<br>
+  </p>
+  <p>
+    <a href="analogtodigitadigitaltoanalog.html">View Analog-Digital Converter</a>
+    <!-- <button class="convert-btn">Convert</button> -->
+  </p>
+</section>
+
+<script>
+  // JavaScript code goes here
+</script>
+</body>
+</html>

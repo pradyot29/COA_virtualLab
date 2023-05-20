@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Master-Slave Flip-Flop</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    output {
+      display: block;
+      margin-top: 10px;
+      padding: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Master-Slave Flip-Flop</h1>
+  <label for="clockFrequency">Clock Frequency (Hz):</label>
+  <input type="number" id="clockFrequency" value="1" min="0" step="1">
+  <output id="flipFlopOutput"></output>
+  <canvas id="flipFlopCanvas" width="400" height="200"></canvas>
+  <script>
+    // Get references to the input and output elements
+    // Get references to the input and output elements
+    const clockFrequencyInput = document.getElementById('clockFrequency');
+    const flipFlopOutput = document.getElementById('flipFlopOutput');
+    const canvas = document.getElementById('flipFlopCanvas');
+    const context = canvas.getContext('2d');
+
+    // Define the initial state of the flip-flop
+    let master = 0;
+    let slave = 0;
+
+    // Set up the clock signal timer
+    let timer = null;
+
+    function startClock() {
+      if (timer) {
+        clearInterval(timer);
+      }
+
+      // Get the clock frequency from the input element
+      const clockFrequency = Number(clockFrequencyInput.value);
+
+      // Set up the clock signal timer
+      timer = setInterval(() => {
+        // Toggle the clock signal
+        const clock = Math.round(Math.random()); // generates random 0 or 1
+
+        // Update the flip-flop state based on the clock signal
+        if (clock === 1) {
+          slave = master;
+          master = 1 - master;
+        }
+
+        // Output the clock signal and flip-flop waveform
+        flipFlopOutput.textContent = `Clock: ${clock}  Master: ${master}  Slave: ${slave}`;
+
+        // Draw the waveform on the canvas
+        context.fillStyle = 'black';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.beginPath();
+        context.moveTo(0, canvas.height / 2);
+        context.lineTo(canvas.width, canvas.height / 2);
+        context.stroke();
+
+        context.strokeStyle = 'green';
+        context.beginPath();
+        context.moveTo(0, canvas.height - (canvas.height * master * 2));
+        context.lineTo(canvas.width / 2, canvas.height - (canvas.height * master * 2));
+        context.stroke();
+
+        context.strokeStyle = 'blue';
+        context.beginPath();
+        context.moveTo(canvas.width / 2, canvas.height - (canvas.height * slave * 2));
+        context.lineTo(canvas.width, canvas.height - (canvas.height * slave * 2));
+        context.stroke();
+
+      }, 1000 / clockFrequency); // convert frequency to milliseconds
+    }
+
+    // Add an event listener to the clock frequency input element
+    clockFrequencyInput.addEventListener('input', startClock);
+
+    // Start the clock initially
+    startClock();
+  </script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Theory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="faraday_theory_nav">
+    <ul>
+        <li>
+            <a>
+                <img src="Images/theory_logo.jpg">
+                <br>
+                Theory
+            </a>
+        </li>
+<!--        <li>-->
+<!--            <a>-->
+<!--                <img src="Images/objective_logo.jpg">-->
+<!--                <br>-->
+<!--                Objective-->
+<!--            </a>-->
+<!--        </li>-->
+    </ul>
+</nav>
+<div class="theory_container">
+    <p>
+        If a coil of wire is placed in a changing magnetic field, a current will be induced in the wire.  This current flows because something is producing an electric field that forces the charges around the wire.  (It cannot be the magnetic force since the charges are not initially moving).  This "something" is called an electromotive force, or emf, even though it is not a force.  Instead, emf is like the voltage provided by a battery.  A changing magnetic field through a coil of wire therefore must induce an emf in the coil which in turn causes current to flow.
+    </p>
+    <p>
+        The law describing induced emf is named after the British scientist Michael Faraday, but Faraday's Law should really be called Henry's Law.  Joseph Henry, an American from the Albany area, discovered that changing magnetic fields induced current before Faraday did.  Unfortunately, he lived in the age before instantaneous electronic communication between Europe and America.  Faraday got published and got famous before Henry could report his findings.  Interestingly enough, Henry had to explain the results to Faraday when the two met a few years later.
+    </p>
+    <p>
+        Briefly stated, Faraday's law says that a changing magnetic field produces an electric field.  If charges are free to move, the electric field will cause an emf and a current.  For example, if a loop of wire is placed in a magnetic field so that the field passes through the loop, a change in the magnetic field will induce a current in the loop of wire.  A current is also induced if the area of the loop changes, or if the area enclosing magnetic field changes.  So it is the change in magnetic flux, defined as
+    </p>
+    <img src="Images/magflux.gif">
+    <p>that determines the induced current.  A is the area vector; its magnitude is the area of the loop, and its direction is perpendicular to the area of the loop, and q  is the angle between A and the magnetic field B.  The last equality (removing the integral) is valid only if the field is uniform over the entire loop.
+        Faraday's Law says that the emf induced (and therefore the current induced) in the loop is proportional to the rate of change in magnetic flux:
+    </p>
+    <img src="Images/faraday.gif">
+    <p>
+        e is the emf, which is the work done moving charges around the loop, divided by the charge.  It is similar in concept to voltage, except that no charge separation is necessary.  The magnetic flux FB equals the magnetic field B times the area A of the loop with magnetic field through it if (a) the magnetic field is perpendicular to the plane of the loop, and (b) the magnetic field is uniform throughout the loop.  For our purposes, we will assume these two conditions are met; in practical applications, however, magnetic field will vary through a loop, and the field will not always be perpendicular to the loop.
+    </p>
+    <p>
+        Since all applications of Faraday's Law to magnetic storage involve a coil of wire of fixed area, we will also assume that (c) the area does not change in time.  We then have a simpler expression for the current induced in the coil:
+    </p>
+    <img src="Images/ichgB.gif">
+    <p>
+        The induced current depends on both the area of the coil and the change in magnetic field.  In a coil of wires, each loop contributes an area A to the right-hand side of the equation, so the induced emf will be proportional to the number of loops in a coil.  But doubling the number of loops doubles the length of wire used and so doubles the resistance, so the induced current will not increase when loops are added.
+    </p>
+</div>
+</body>
+</html>

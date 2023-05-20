@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System Converter</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #9bf8f8;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .converter {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        input[type=number],
+        input[type=text] {
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 100%;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            animation: fade-in 1s ease;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.5s ease;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    	<title>Virtual Lab Homepage</title>
+        <link rel="stylesheet"  href="stylesVL.css">
+</head>
+
+<body>
+    <header>Virtual Lab</header>
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="OurProjects.html">Our Projects</a>
+		<a href="OurTeam.html">Our Team</a>
+        <a href="help.html">Help</a>
+
+	</nav>
+
+    <h1>Number System Converter</h1>
+    <div class="converter">
+        <h2>Decimal to Binary</h2>
+        <input type="number" id="decimal-input">
+        <button onclick="decimalToBinary()">Convert</button>
+        <p id="binary-output"></p>
+    </div>
+    <div class="converter">
+        <h2>Binary to Decimal</h2>
+        <input type="text" id="binary-input">
+        <button onclick="binaryToDecimal()">Convert</button>
+        <p id="decimal-output"></p>
+    </div>
+    <div class="converter">
+        <h2>Decimal to Hexadecimal</h2>
+        <input type="number" id="decimal-input-hex">
+        <button onclick="decimalToHex()">Convert</button>
+        <p id="hex-output"></p>
+    </div>
+    <div class="converter">
+        <h2>Hexadecimal to Decimal</h2>
+        <input type="text" id="hex-input">
+        <button onclick="hexToDecimal()">Convert</button>
+        <p id="decimal-output-hex"></p>
+    </div>
+    <div class="converter">
+        <h2>Binary to Octal</h2>
+        <input type="text" id="binary-input-octal">
+        <button onclick="binaryToOctal()">Convert</button>
+        <p id="octal-output"></p>
+    </div>
+    <div class="converter">
+        <h2>Octal to Binary</h2>
+        <input type="text" id="octal-input-binary">
+        <button onclick="octalToBinary()">Convert</button>
+        <p id="binary-output-octal"></p>
+    </div>
+    <script>
+        // Decimal to Binary
+        function decimalToBinary() {
+            var decimalInput = document.getElementById("decimal-input").value;
+            var binaryOutput = document.getElementById("binary-output");
+            binaryOutput.innerHTML = parseInt(decimalInput).toString(2);
+        }
+
+        // Binary to Decimal
+        function binaryToDecimal() {
+            var binaryInput = document.getElementById("binary-input").value;
+            var decimalOutput = document.getElementById("decimal-output");
+            decimalOutput.innerHTML = parseInt(binaryInput, 2);
+        }
+
+        // Decimal to Hexadecimal
+        function decimalToHex() {
+            var decimalInput = document.getElementById("decimal-input-hex").value;
+            var hexOutput = document.getElementById("hex-output");
+            hexOutput.innerHTML = parseInt(decimalInput).toString(16).toUpperCase();
+        }
+
+        // Hexadecimal to Decimal
+        function hexToDecimal() {
+            var hexInput = document.getElementById("hex-input").value;
+            var decimalOutput = document.getElementById("decimal-output-hex");
+            decimalOutput.innerHTML = parseInt(hexInput, 16);
+        }
+
+        // Binary to Octal
+        function binaryToOctal() {
+            var binaryInput = document.getElementById("binary-input-octal").value;
+            var octalOutput = document.getElementById("octal-output");
+            octalOutput.innerHTML = parseInt(binaryInput, 2).toString(8);
+        }
+
+        // Octal to Binary
+        function octalToBinary() {
+            var octalInput = document.getElementById("octal-input-binary").value;
+            var binaryOutput = document.getElementById("binary-output-octal");
+            binaryOutput.innerHTML = parseInt(octalInput, 8).toString(2);
+        }
+    </script>
+</body>
+
+</html>

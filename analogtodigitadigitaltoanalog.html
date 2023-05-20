@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Analog to Digital and Digital to Analog Converter</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css">
+    style -->
+     	<style>
+		body {
+			background-color: #f1f1f1;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+			margin: 30px 0;
+		}
+		h2 {
+			margin-top: 50px;
+		}
+		.converter {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+			margin: 30px auto;
+			max-width: 600px;
+			padding: 30px;
+		}
+		label {
+			display: block;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+		input[type="number"] {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			margin-bottom: 20px;
+			padding: 10px;
+			width: 100%;
+		}
+		button {
+			background-color: #4CAF50;
+			border: none;
+			border-radius: 5px;
+			color: #fff;
+			cursor: pointer;
+			font-size: 16px;
+			padding: 10px;
+			width: 100%;
+		}
+		button:hover {
+			background-color: #3e8e41;
+		}
+		p {
+			font-size: 20px;
+			margin-top: 20px;
+		}
+		span {
+			font-weight: bold;
+		}
+		h2{
+			text-align: center;
+		}
+	
+    </style>
+    	<title>Virtual Lab Homepage</title>
+        <link rel="stylesheet"  href="stylesVL.css">
+</head>
+
+<body>
+    <header>Virtual Lab</header>
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="OurProjects.html">Our Projects</a>
+		<a href="OurTeam.html">Our Team</a>
+		<a href="help.html">Help</a>
+
+	</nav>
+
+    <h1>Analog to Digital and Digital to Analog Converter</h1>
+
+    <h2>Analog to Digital Converter</h2>
+    <div class="converter">
+        <label for="analog-value">Analog Value:</label>
+        <input type="number" id="analog-value" step="0.01" min="0" max="5">
+        <button onclick="analogToDigital()">Convert</button>
+        <p>Digital Value: <span id="digital-value"></span></p>
+    </div>
+
+    <h2>Digital to Analog Converter</h2>
+    <div class="converter">
+        <label for="digital-value2">Digital Value:</label>
+        <input type="number" id="digital-value2" min="0" max="255">
+        <button onclick="digitalToAnalog()">Convert</button>
+        <p>Analog Value: <span id="analog-value2"></span></p>
+    </div>
+
+    <script>
+        function analogToDigital() {
+            let analogValue = document.getElementById("analog-value").value;
+            let digitalValue = Math.round(analogValue / 5 * 255);
+            document.getElementById("digital-value").textContent = digitalValue;
+        }
+
+        function digitalToAnalog() {
+            let digitalValue = document.getElementById("digital-value2").value;
+            let analogValue = digitalValue / 255 * 5;
+            document.getElementById("analog-value2").textContent = analogValue.toFixed(2);
+        }
+
+    </script>
+</body>
+
+</html>

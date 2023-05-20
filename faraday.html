@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Our Projects</title>
+    <link rel="stylesheet" href="stylesVL.css">
+</head>
+<body  class="body_faraday">
+
+
+
+    <header>Virtual Lab</header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="OurProjects.html">Our Projects</a>
+        <a href="OurTeam.html">Our Team</a>
+        <a href="help.html">Help</a>
+
+    </nav>
+<div class="container">
+    <header>
+        <h1>Faraday's Law</h1>
+    </header>
+
+    <label>Number of turns in solenoid :
+    <input type="number" name="number1" id="turns">
+    </label><br>
+
+    <label>Length of solenoid (m) :
+    <input type="number" name="number2" id="lsol">
+    </label><br>
+
+    <label>Area of solenoid (m^2) :
+    <input type="number" id="area">
+    </label><br>
+
+    <label>Resistivity of Solenoid (ohm-m) :
+    <input type="number" id="resistivity">
+    </label><br>
+
+    <label>Pole strength of Magnet (A-m) :
+    <input type="number" id="pole">
+    </label><br>
+
+    <label>Length of Magnet (m) :
+    <input type="number" id="lmag">
+    </label><br>
+
+    <label>Velocity of magnet (m/s) :
+    <input type="number" id="vel">
+    </label><br>
+
+    <label>Distance of magnet from solenoid (m) :
+    <input type="number" id="dist">
+    </label><br>
+
+    <button type="button" class="btn btn-info" onclick="submit1()">submit</button><br><br>
+    <div class="screen" id="screen0"></div>
+    <br>
+    <div class="screen" id="screen1"></div>
+    <div class="screen" id="screen2"></div>
+    <div class="screen" id="screen3"></div>
+
+
+
+</div>
+
+<script type="text/javascript" src="main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+</body>
+</html>

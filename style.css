@@ -1,0 +1,52 @@
+.body_faraday {
+    background-color: lightskyblue;
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+    background-color: yellow;
+}
+
+.container, .container label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container * {
+    margin: auto;
+}
+
+.screen  {
+    text-transform: uppercase;
+    text-decoration-color: royalblue;
+}
+
+.theory_container {
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.theory_container img {
+    margin: 0 auto;
+}
+
+.faraday_theory_nav a {
+    text-decoration: underline;
+    text-transform: uppercase;
+    padding: 9px;
+}
+
+.faraday_theory_nav a img {
+    width: 50px;
+    height: 50px;
+}
+
+ul li {
+    list-style: none;
+    display: inline;
+}
+
